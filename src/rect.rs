@@ -2,27 +2,12 @@ use std::fmt::Display;
 
 use serde::{Deserialize, Serialize};
 
+use crate::border::BorderStyle;
+
 #[derive(Debug, Default, PartialEq, Clone, Serialize, Deserialize)]
 pub struct RectStyle {
     padding: (u16, u16, u16, u16),
     margin: (u16, u16, u16, u16),
-}
-
-#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
-pub struct BorderStyle {
-    vert_symbol: char,
-    hori_symbol: char,
-    corners: (char, char, char, char),
-}
-
-impl Default for BorderStyle {
-    fn default() -> Self {
-        Self {
-            vert_symbol: '│',
-            hori_symbol: '─',
-            corners: ('┐', '┘', '└', '┌'),
-        }
-    }
 }
 
 impl RectStyle {
@@ -67,11 +52,9 @@ pub fn surrond_with_border<D: Display>(content: D, style: BorderStyle) -> String
         .unwrap_or("")
         .len();
 
-    let BorderStyle {
-        vert_symbol,
-        hori_symbol,
-        corners,
-    } = style;
+    let vert_symbol = style.get_vert_symbol();
+    let hori_symbol = style.get_hori_symbol();
+    let corners = style.get_corners();
 
     let top = format!(
         "{l}{m}{r}",
