@@ -4,10 +4,10 @@ fn main() {
     println!(
         "{}",
         draw_rect(
-            "hi there fellow stranger",
+            "hi there fellow stranger ",
             (20, 10),
             RectStyle::default()
-                .set_padding((2, 3, 0, 3))
+                .set_padding((2, 5, 0, 5))
                 .set_margin((3, 3, 2, 4))
         )
     );
