@@ -1,6 +1,8 @@
 use shaper::rect::{draw_rect, RectStyle};
 
 fn main() {
+    let a = 0b011 | 0b100;
+    println!("{a:b}");
     println!(
         "{}",
         draw_rect(
